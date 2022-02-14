@@ -1,4 +1,4 @@
-# autodeployment
+# auto_deployment
 
 ## 介绍
 这是一个自动部署的脚本，可自动完成整个项目、某个文件/目录的部署、更新、备份等工作。  
