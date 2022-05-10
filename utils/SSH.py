@@ -58,6 +58,15 @@ class ssh(object):
         else:
             print("[delete success] {}".format(path))
 
+    # 自定义命令
+    def define(self,command):
+        stdin, stdout, stderr = self.ssh_client.exec_command(command)
+        err_info=str(stderr.read(), encoding="utf-8")
+        if err_info:
+            raise Exception("command fail {} \n{}".format(command,err_info))
+        else:
+            print("[command success] {}".format(command))
+
     # 关闭
     def close(self):
         self.ssh_client.close()

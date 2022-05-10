@@ -39,7 +39,7 @@ def auto_start():
         sftp_client.close()
     else:
         print("Please set the --name parameter")
-    print("end")
+    print("END!")
 
 
 if __name__ == '__main__':

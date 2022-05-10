@@ -7,6 +7,13 @@ def exec_process(ssh_client,sftp_client,cfg):
     remote_path=cfg.REMOTE_PATH
     local_path=cfg.LOCAL_PATH
     update=cfg.UPDATE
+    pre_command=cfg.PRE_COMMAND
+    post_command=cfg.POST_COMMAND
+    # 更新前命令操作
+    if pre_command:
+        for item in pre_command:
+            ssh_client.define(item)
+
     # 在原项目上更新指定文件或文件夹
     if update:
         for item in update:
@@ -65,6 +72,10 @@ def exec_process(ssh_client,sftp_client,cfg):
         os.remove(zip_name)
         print("[delete local temporary] {}".format(zip_name))
 
+    # 更新后命令操作
+    if post_command:
+        for item in post_command:
+            ssh_client.define(item)
 
 # 本地打包
 def zip_file(local_path):

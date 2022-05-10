@@ -3,14 +3,20 @@ HOST:
  PORT: "22"  # 端口号
  USERNAME: test  # 用户名
  PASSWORD: "123456" # 登录密码
-# UPDATE内容填写后,只会将配置的文件或者目录,更新到对应的位置,如果要更新整个项目,UPDATE参数配置为[]
-#（本地路径;远端路径;远端存在0覆盖/1备份）
+# UPDATE内容填写后，只会将配置的文件或者目录，更新到对应的位置。如果要更新整个项目，请将UPDATE参数配置为[]。
+# 具体格式为（本地路径;远端路径;远端存在0覆盖/1备份）
 # 将本地路径下的test.txt文件更新到远端如果远端目录下,并命名为test.txt,如果端存在test.txt文件,采用覆盖的方式。
 # 将本地路径下的test_directory目录更新到远端/home/project_name目录下,如果远端存在test_directory目录,采用覆盖的方式。
-# 目录的路径写到目录名即可，后面不要接路径符
+# 目录的路径写到目录名即可，后面不要接路径符。
 UPDATE:
  - H:\my_project\project\test.txt;/home/my_project/project/test.txt;0
  - H:\my_project\project\test_directory;/home/project_name;0
-# 更新整个项项目,将本地路径整个project项目文件更新到/home/my_project目录下，如果远端已有自动备份。
+# 需要更新整个项目时配置。例如：将本地路径整个project项目文件夹更新到/home/my_project目录下，如果远端已有自动备份。
 LOCAL_PATH: H:\project
 REMOTE_PATH: /home/my_project
+# 更新前需要执行的一些额外命令。如果不需要，则配置为[]。
+PRE_COMMAND:
+ - "mkdir /root/test1"
+ - "touch /root/test1.txt"
+# 更新后需要执行的一些额外命令，格式同PRE_COMMAND。如果不需要，则配置为[]。
+POST_COMMAND: []
